@@ -1,0 +1,1 @@
+import { apiClient } from '@/api/client'; import type { ResultsResponse } from '@/types/api'; export async function fetchResults(): Promise<ResultsResponse> { return (await apiClient.get<ResultsResponse>('/api/v1/results')).data }

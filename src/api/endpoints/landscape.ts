@@ -1,0 +1,1 @@
+import { apiClient } from '@/api/client'; import type { LandscapeResponse } from '@/types/api'; export async function fetchLandscape(): Promise<LandscapeResponse> { return (await apiClient.get<LandscapeResponse>('/api/v1/landscape')).data }

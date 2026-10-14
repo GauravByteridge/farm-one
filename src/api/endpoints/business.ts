@@ -1,0 +1,1 @@
+import { apiClient } from '@/api/client'; import type { FeedCostResponse } from '@/types/api'; export async function fetchFeedCost(): Promise<FeedCostResponse> { return (await apiClient.get<FeedCostResponse>('/api/v1/benchmarks/feed-cost')).data }
