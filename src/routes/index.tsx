@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate } from 'react-router-dom'
+import { createHashRouter, Navigate } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import { AppShell } from '@/components/layout/AppShell'
 
@@ -23,7 +23,7 @@ function LazyPage({ component: C }: { component: React.ComponentType }) {
   return <Suspense fallback={<LoadingFallback />}><C /></Suspense>
 }
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: '/',
     element: <AppShell />,
