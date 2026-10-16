@@ -1,18 +1,24 @@
 import { useState, useRef, useEffect } from 'react'
-import { Sparkles, GitCompare, Globe, Home, Check, ChevronDown } from 'lucide-react'
+import { Sparkles, GitCompare, Globe, Home, Check, ChevronDown, ShieldCheck } from 'lucide-react'
 import { useAppStore } from '@/stores/appStore'
-import type { ComparisonStandard } from '@/stores/appStore'
+import type { ComparisonStandard, Persona } from '@/stores/appStore'
 import { cn } from '@/lib/utils'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 const PAGE_TITLES: Record<string, string> = {
-  '/overview':  'Overview',
-  '/farms':     'Farms',
-  '/quality':   'Data Quality',
-  '/pipeline':  'Pipeline & Scale',
-  '/ask':       'Ask AI',
-  '/my-farm':   'My Farm',
-  '/animals':   'Animals',
+  '/overview':           'Overview',
+  '/farms':              'Farms',
+  '/quality':            'Data Quality',
+  '/pipeline':           'Pipeline & Scale',
+  '/ask':                'Ask AI',
+  '/my-farm':            'My Farm',
+  '/animals':            'Animals',
+  '/admin/discovery':    'Schema Discovery',
+  '/admin/profiling':    'Data Profiling',
+  '/admin/correlation':  'Cross-System Correlation',
+  '/admin/etl':          'ETL Generator',
+  '/admin/validation':   'Validation & QA',
+  '/admin/assistant':    'AI Assistant',
 }
 
 const COMPARISON_SHORT: Record<ComparisonStandard, string> = {
@@ -43,6 +49,16 @@ const PERSONAS = [
     bg: 'bg-slate-600',
     route: '/my-farm',
   },
+  {
+    id: 'admin' as const,
+    name: 'Admin',
+    role: 'Data Engineering Admin',
+    scope: 'All Systems · All Sources',
+    icon: ShieldCheck,
+    initials: 'AD',
+    bg: 'bg-violet-700',
+    route: '/admin/discovery',
+  },
 ]
 
 export function TopBar() {
@@ -66,7 +82,7 @@ export function TopBar() {
     return () => document.removeEventListener('mousedown', handler)
   }, [])
 
-  function switchPersona(id: 'global' | 'farm') {
+  function switchPersona(id: Persona) {
     const p = PERSONAS.find(x => x.id === id)!
     setPersona(id)
     navigate(p.route)

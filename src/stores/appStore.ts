@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-export type Persona = 'global' | 'farm'
+export type Persona = 'global' | 'farm' | 'admin'
 export type ComparisonStandard = 'vs_last_run' | 'vs_cohort' | 'vs_industry' | 'vs_previous_period'
 export type DateRange = '30d' | '3m' | '12m' | '2y' | '3y' | '5y' | 'all'
 

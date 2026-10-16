@@ -2,6 +2,7 @@ import { NavLink, useLocation } from 'react-router-dom'
 import {
   LayoutDashboard, Building2, ShieldCheck, Activity,
   MessageSquare, Home, Rabbit, Sparkles, Cpu,
+  Search, BarChart2, GitMerge, Code2, CheckSquare,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useAppStore } from '@/stores/appStore'
@@ -27,10 +28,21 @@ const FARM_NAV: NavItem[] = [
   { label: 'Ask AI',   icon: MessageSquare,   action: 'toggleChat' },
 ]
 
+const ADMIN_NAV: NavItem[] = [
+  { path: '/admin/discovery',   label: 'Schema Discovery',         icon: Search       },
+  { path: '/admin/profiling',   label: 'Data Profiling',           icon: BarChart2    },
+  { path: '/admin/correlation', label: 'Cross-System Correlation', icon: GitMerge     },
+  { path: '/admin/etl',         label: 'ETL Generator',            icon: Code2        },
+  { path: '/admin/validation',  label: 'Validation & QA',          icon: CheckSquare  },
+  { path: '/admin/assistant',   label: 'AI Assistant',             icon: Sparkles     },
+]
+
 export function Sidebar() {
   const { isChatPanelOpen, toggleChatPanel } = useAppStore()
   const persona = useAppStore(s => s.persona)
-  const navItems = persona === 'global' ? GLOBAL_NAV : FARM_NAV
+  const navItems = persona === 'global' ? GLOBAL_NAV
+                 : persona === 'farm'   ? FARM_NAV
+                 : ADMIN_NAV
   const location = useLocation()
 
   return (

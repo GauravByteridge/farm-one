@@ -11,6 +11,13 @@ const Pipeline  = lazy(() => import('@/pages/Pipeline'))
 const Ask       = lazy(() => import('@/pages/Ask'))
 const EtlCopilot = lazy(() => import('@/pages/EtlCopilot'))
 
+const AdminDiscovery   = lazy(() => import('@/pages/admin/AdminDiscovery'))
+const AdminProfiling   = lazy(() => import('@/pages/admin/AdminProfiling'))
+const AdminCorrelation = lazy(() => import('@/pages/admin/AdminCorrelation'))
+const AdminEtl         = lazy(() => import('@/pages/admin/AdminEtl'))
+const AdminValidation  = lazy(() => import('@/pages/admin/AdminValidation'))
+const AdminAssistant   = lazy(() => import('@/pages/admin/AdminAssistant'))
+
 function LoadingFallback() {
   return (
     <div className="flex h-full min-h-[200px] items-center justify-center text-gray-400">
@@ -38,6 +45,13 @@ export const router = createHashRouter([
       { path: 'pipeline',  element: <LazyPage component={Pipeline} /> },
       { path: 'ask',       element: <LazyPage component={Ask} /> },
       { path: 'etl-copilot', element: <LazyPage component={EtlCopilot} /> },
+
+      { path: 'admin/discovery',   element: <LazyPage component={AdminDiscovery} />   },
+      { path: 'admin/profiling',   element: <LazyPage component={AdminProfiling} />   },
+      { path: 'admin/correlation', element: <LazyPage component={AdminCorrelation} /> },
+      { path: 'admin/etl',         element: <LazyPage component={AdminEtl} />         },
+      { path: 'admin/validation',  element: <LazyPage component={AdminValidation} />  },
+      { path: 'admin/assistant',   element: <LazyPage component={AdminAssistant} />   },
 
       // Redirect removed screens
       { path: 'dashboard',  element: <Navigate to="/overview" replace /> },
